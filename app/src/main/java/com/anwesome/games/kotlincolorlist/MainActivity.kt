@@ -9,10 +9,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var customView:CustomView = CustomView(this)
-        customView.addColor(Color.RED)
-        customView.addColor(Color.GREEN)
-        customView.addColor(Color.BLUE)
-        customView.addColor(Color.CYAN)
+        customView.addColor(Color.parseColor("#4CAF50"))
+        customView.addColor(Color.parseColor("#00695C"))
+        customView.addColor(Color.parseColor("#00838F"))
+        customView.addColor(Color.parseColor("#0277BD"))
+        customView.addColor(Color.parseColor("#0D47A1"))
+        customView.addColor(Color.parseColor("#e53935"))
         setContentView(customView)
     }
 }
