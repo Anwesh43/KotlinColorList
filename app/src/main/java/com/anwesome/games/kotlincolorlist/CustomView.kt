@@ -19,6 +19,7 @@ class CustomView(ctx:Context):View(ctx) {
     var hSize:Int = 0
     var colorRects:ArrayList<ColorRect> = ArrayList()
     var animationHandler:AnimationHandler?=null
+    var clickListener:OnClickListner?=null
     fun addColor(color:Int) {
         this.colors.add(color)
     }
@@ -88,6 +89,7 @@ class ColorRect {
         if(scale > 1.0f) {
             scale = 1.0f
             dir = 0.0f
+
         }
         if(scale < 0) {
             scale = 0.0f
@@ -111,8 +113,8 @@ class AnimationHandler {
     var prev:ColorRect? = null
     var curr:ColorRect? = null
     var animated:Boolean = false
-    var v:View?=null
-    constructor(v:View) {
+    var v:CustomView?=null
+    constructor(v:CustomView) {
         this.v = v
     }
     fun animate() {
@@ -120,6 +122,7 @@ class AnimationHandler {
             curr?.update()
             prev?.update()
             if(curr?.stopped() == true) {
+                v?.clickListener?.onClick(curr?.index)
                 prev = curr
                 animated = false
                 curr = null
@@ -141,5 +144,10 @@ class AnimationHandler {
             v?.postInvalidate()
             animated = true
         }
+    }
+}
+interface OnClickListner{
+    fun onClick(index:Int?) {
+
     }
 }
