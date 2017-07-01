@@ -134,7 +134,7 @@ class AnimationHandler {
         }
     }
     fun startAnimating(colorRect:ColorRect) {
-        if(!animated) {
+        if(!animated && colorRect != prev) {
             curr = colorRect
             curr?.startUpdating(1.0f)
             prev?.startUpdating(-1.0f)
