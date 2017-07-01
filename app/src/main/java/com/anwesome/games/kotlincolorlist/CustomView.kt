@@ -37,8 +37,11 @@ class CustomView(ctx:Context):View(ctx) {
             }
             animationHandler = AnimationHandler(this)
         }
+        colorRects.forEach {
+            it.draw(canvas,paint,w)
+        }
         time++
-        animationHandler?.animate(canvas)
+        animationHandler?.animate()
     }
     override fun onTouchEvent(event:MotionEvent):Boolean {
         if(event.action == MotionEvent.ACTION_DOWN) {
@@ -112,7 +115,7 @@ class AnimationHandler {
     constructor(v:View) {
         this.v = v
     }
-    fun animate(canvas:Canvas) {
+    fun animate() {
         if(animated) {
             curr?.update()
             prev?.update()
